@@ -275,3 +275,88 @@ main {
     transform: translateY(-2px);
     box-shadow: 0 14px 30px rgba(35, 134, 54, 0.5);
 }
+/* ===================== RESPONSIVE ===================== */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 900px) {
+
+    body {
+        margin-top: 110px; /* más espacio por el navbar */
+    }
+
+    .menu {
+        gap: 22px;
+        justify-content: center;
+    }
+
+    main {
+        padding: 32px 18px;
+    }
+
+    .edu-card {
+        max-width: 100%;
+    }
+}
+
+/* Celulares grandes */
+@media (max-width: 600px) {
+
+    body {
+        margin-top: 140px;
+    }
+
+    .navbar {
+        padding: 16px 10px;
+    }
+
+    .menu {
+        gap: 14px;
+    }
+
+    .menu a {
+        font-size: 0.95rem;
+    }
+
+    main {
+        padding: 28px 16px;
+    }
+
+    .skills img {
+        width: 34px;
+        margin: 6px;
+    }
+
+    .btn-cv {
+        width: 100%;
+        justify-content: center;
+        padding: 14px;
+    }
+}
+
+/* Celulares chicos */
+@media (max-width: 420px) {
+
+    body {
+        margin-top: 160px;
+    }
+
+    .menu {
+        gap: 10px;
+    }
+
+    .menu a {
+        font-size: 0.9rem;
+    }
+
+    .section {
+        margin-bottom: 48px;
+    }
+
+    .section h2 {
+        font-size: 1.35rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+    }
+}
