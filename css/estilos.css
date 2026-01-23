@@ -1,0 +1,362 @@
+/* RESET CORRECTO (NO rompe estructura) */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* BODY – GitHub Dark */
+body {
+    margin: 0;
+    margin-top: 90px; /* espacio real para navbar fijo */
+    font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: #0d1117;
+    color: #c9d1d9;
+    line-height: 1.6;
+}
+
+/* ===================== NAVBAR ===================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(22, 27, 34, 0.98),
+        rgba(13, 17, 23, 0.98)
+    );
+    border-bottom: 1px solid #21262d;
+    padding: 18px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+}
+
+/* MENU */
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 36px;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+/* Evita cortes */
+.menu li {
+    flex-shrink: 0;
+}
+
+/* LINKS */
+.menu a {
+    text-decoration: none;
+    color: #c9d1d9;
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+    position: relative;
+    padding: 6px 2px;
+    transition: color 0.2s ease;
+}
+
+/* Hover */
+.menu a:hover {
+    color: #f0f6fc;
+}
+
+/* Línea animada */
+.menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: #58a6ff;
+    transition: width 0.25s ease;
+}
+
+/* Activo */
+.menu a.active {
+    color: #58a6ff;
+}
+
+.menu a.active::after,
+.menu a:hover::after {
+    width: 100%;
+}
+
+/* ===================== MAIN ===================== */
+main {
+    max-width: 900px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.section {
+    margin-bottom: 60px;
+    scroll-margin-top: 110px;
+}
+
+.section h2 {
+    margin-bottom: 1rem;
+    color: #f0f6fc;
+}
+
+.subtitle {
+    color: #8b949e;
+}
+
+/* ===================== ABOUT ===================== */
+.about-list {
+    list-style: none;
+    padding: 0;
+}
+
+.about-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.about-list i {
+    color: #58a6ff;
+}
+
+/* ===================== EXPERIENCE ===================== */
+.job {
+    margin-bottom: 25px;
+}
+
+/* ===================== SKILLS ICONS ===================== */
+.skills img {
+    width: 40px;
+    margin: 8px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    filter: brightness(0.9);
+}
+
+.skills img:hover {
+    transform: scale(1.15);
+    filter: brightness(1.1);
+}
+
+/* ===================== FADE ===================== */
+.fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===================== EDUCATION ===================== */
+.education {
+    margin-bottom: 1.5rem;
+}
+
+.education h3 {
+    margin: 0;
+    font-weight: 600;
+    color: #f0f6fc;
+}
+
+.education .degree {
+    margin: 0.3rem 0;
+    color: #c9d1d9;
+}
+
+.education .date {
+    font-size: 0.9rem;
+    color: #8b949e;
+}
+
+/* ===================== COURSES ===================== */
+.courses {
+    padding-left: 1.2rem;
+}
+
+.courses li {
+    margin-bottom: 0.4rem;
+}
+
+.courses .provider {
+    color: #8b949e;
+    font-style: italic;
+}
+
+/* ===================== SKILLS LIST ===================== */
+.skills {
+    padding-left: 1.2rem;
+}
+
+.skills li {
+    margin-bottom: 0.4rem;
+}
+
+/* ===================== CARDS / BADGES ===================== */
+.education-cards,
+.courses-badges,
+.skills-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+/* EDUCATION CARD */
+.edu-card {
+    background: #161b22;
+    border: 1px solid #21262d;
+    padding: 1rem 1.2rem;
+    border-radius: 14px;
+    max-width: 420px;
+}
+
+.edu-card h3 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.edu-card .degree {
+    margin: 0.3rem 0;
+}
+
+.edu-card .date {
+    font-size: 0.85rem;
+    color: #8b949e;
+}
+
+/* COURSES & SKILLS BADGES */
+.courses-badges span,
+.skills-badges span {
+    background: #161b22;
+    border: 1px solid #21262d;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    color: #c9d1d9;
+    white-space: nowrap;
+}
+
+/* ===================== CV DOWNLOAD ===================== */
+.cv-download {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.btn-cv {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #238636;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 8px 20px rgba(35, 134, 54, 0.35);
+}
+
+.btn-cv i {
+    font-size: 1.1rem;
+}
+
+.btn-cv:hover {
+    background: #2ea043;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(35, 134, 54, 0.5);
+}
+/* ===================== RESPONSIVE ===================== */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 900px) {
+
+    body {
+        margin-top: 110px; /* más espacio por el navbar */
+    }
+
+    .menu {
+        gap: 22px;
+        justify-content: center;
+    }
+
+    main {
+        padding: 32px 18px;
+    }
+
+    .edu-card {
+        max-width: 100%;
+    }
+}
+
+/* Celulares grandes */
+@media (max-width: 600px) {
+
+    body {
+        margin-top: 140px;
+    }
+
+    .navbar {
+        padding: 16px 10px;
+    }
+
+    .menu {
+        gap: 14px;
+    }
+
+    .menu a {
+        font-size: 0.95rem;
+    }
+
+    main {
+        padding: 28px 16px;
+    }
+
+    .skills img {
+        width: 34px;
+        margin: 6px;
+    }
+
+    .btn-cv {
+        width: 100%;
+        justify-content: center;
+        padding: 14px;
+    }
+}
+
+/* Celulares chicos */
+@media (max-width: 420px) {
+
+    body {
+        margin-top: 160px;
+    }
+
+    .menu {
+        gap: 10px;
+    }
+
+    .menu a {
+        font-size: 0.9rem;
+    }
+
+    .section {
+        margin-bottom: 48px;
+    }
+
+    .section h2 {
+        font-size: 1.35rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+    }
+}
