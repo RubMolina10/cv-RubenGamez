@@ -24,6 +24,7 @@
                 <li><a href="#sobre-mi">Sobre mí</a></li>
                 <li><a href="#experiencia">Experiencia</a></li>
                 <li><a href="#proyectos-destacados">Proyectos importantes</a></li>
+                <li><a href="#proyectos-personales">Proyectos Personales</a></li>
                 <li><a href="#habilidades">Habilidades</a></li>
                 <li><a href="#formacionAcademica">Formación Académica</a></li>
             </ul>
@@ -130,7 +131,7 @@
         </section>
 
         <section id="proyectos-destacados" class="section fade">
-            <h2>Proyectos Destacados</h2>
+            <h2>Proyectos Destacados 🛠️ . 💻</h2>
 
             <div class="project-hero">
                 <div class="project-overlay"></div>
@@ -206,6 +207,195 @@
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- Sección de proyectos personales -->
+        <section id="proyectos-personales" class="section fade">
+            <h2>Proyectos personales 💡</h2>
+            <br>
+
+            <div class="project-hero">
+
+                <div class="project-overlay"></div>
+
+                <div class="project-content">
+
+                    <div class="project-badges">
+                        <span>Inteligencia Artificial</span>
+                        <span class="highlight">⭐ OpenAI API</span>
+                        <span class="live">● GitHub Integration</span>
+                        <span class="live">● Code Analysis</span>
+                        <span>Autenticación Segura</span>
+                        <span>Control de Acceso</span>
+                        <span>SQL Server</span>
+                    </div>
+
+                    <h3>
+                        CodeAI – Developer Intelligence Dashboard
+                    </h3>
+
+                    <h2>
+                        Proyecto personal
+                    </h2>
+
+                    <p>
+                        CodeAI es una plataforma web de análisis inteligente de código diseñada
+                        para centralizar la gestión de proyectos de software, analizar cambios
+                        en repositorios y detectar posibles problemas de calidad, mantenibilidad
+                        y riesgo mediante inteligencia artificial.
+                        <br><br>
+
+                        La solución fue desarrollada con Angular en el frontend y Node.js,
+                        Fastify y TypeScript en el backend, utilizando SQL Server para la
+                        persistencia de proyectos, usuarios, sesiones, análisis y hallazgos.
+                        <br><br>
+
+                        CodeAI se integra con GitHub para consultar repositorios, ramas y commits,
+                        permitiendo seleccionar cambios específicos de un proyecto y enviarlos
+                        a un motor de análisis basado en inteligencia artificial.
+                        <br><br>
+
+                        El sistema procesa los archivos modificados en cada commit y genera
+                        información técnica como nivel de riesgo, Code Health, resumen del
+                        análisis y hallazgos clasificados por severidad, categoría, archivo
+                        y línea de código.
+                        <br><br>
+
+                        La plataforma también incorpora un sistema completo de autenticación
+                        y autorización. Las contraseñas son protegidas mediante Argon2id y las
+                        sesiones utilizan tokens seguros almacenados mediante cookies HttpOnly,
+                        manteniendo únicamente el hash correspondiente de cada sesión en
+                        SQL Server.
+                        <br><br>
+
+                        CodeAI cuenta con roles de Administrador y Usuario, protección de rutas
+                        tanto en Angular como en el backend y un sistema de asignación de
+                        proyectos por usuario, permitiendo controlar qué proyectos puede
+                        consultar y analizar cada cuenta.
+                        <br><br>
+
+                        El proyecto fue desarrollado utilizando una arquitectura modular,
+                        separando responsabilidades entre autenticación, usuarios, proyectos,
+                        análisis, integración con GitHub, inteligencia artificial y acceso
+                        a datos.
+                    </p>
+
+                    <div style="padding: 25px;">
+
+                        <ul>
+
+                            <li>
+                                Dashboard centralizado de métricas y análisis.
+                            </li>
+
+                            <li>
+                                Gestión de proyectos y tecnologías.
+                            </li>
+
+                            <li>
+                                Integración con repositorios de GitHub.
+                            </li>
+
+                            <li>
+                                Consulta de ramas y commits.
+                            </li>
+
+                            <li>
+                                Análisis de código mediante inteligencia artificial.
+                            </li>
+
+                            <li>
+                                Análisis individual de commits.
+                            </li>
+
+                            <li>
+                                Detección y clasificación de hallazgos técnicos.
+                            </li>
+
+                            <li>
+                                Clasificación de hallazgos por severidad.
+                            </li>
+
+                            <li>
+                                Métricas de Code Health y nivel de riesgo.
+                            </li>
+
+                            <li>
+                                Historial de ejecuciones de análisis.
+                            </li>
+
+                            <li>
+                                Sistema de autenticación y autorización.
+                            </li>
+
+                            <li>
+                                Contraseñas protegidas mediante Argon2id.
+                            </li>
+
+                            <li>
+                                Sesiones seguras mediante cookies HttpOnly.
+                            </li>
+
+                            <li>
+                                Sesiones revocables almacenadas en SQL Server.
+                            </li>
+
+                            <li>
+                                Protección de rutas mediante Guards en Angular.
+                            </li>
+
+                            <li>
+                                Roles de Administrador y Usuario.
+                            </li>
+
+                            <li>
+                                Administración de usuarios desde el dashboard.
+                            </li>
+
+                            <li>
+                                Asignación de proyectos específicos por usuario.
+                            </li>
+
+                            <li>
+                                Validación de permisos desde el backend.
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="project-tech">
+                        Angular · TypeScript · Node.js · Fastify · SQL Server ·
+                        GitHub API · OpenAI API · REST API · RxJS · Argon2id ·
+                        HttpOnly Cookies
+                    </div>
+
+                    <div class="project-actions">
+
+                        <a href="https://github.com/RubMolina10/code-ai-dashboard.git" target="_blank"
+                            class="btn-primary">
+                            Ver código Frontend
+                        </a>
+
+                        <span class="project-action-separator"></span>
+
+                        <a href="https://github.com/RubMolina10/code-ai-api.git" target="_blank" class="btn-primary">
+                            Ver código Backend
+                        </a>
+
+                        <span class="project-action-separator"></span>
+
+                        <a href="https://github.com/RubMolina10/code-ai-api-database.git" target="_blank"
+                            class="btn-primary">
+                            Ver configuración de BD
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </section>
         <section id="habilidades" class="section fade">
             <h2>🛠️ Habilidades técnicas</h2>
@@ -381,37 +571,38 @@
                     </a>
                 </span>
                 <span>
-                <a href="https://www.udemy.com/certificate/UC-0c0f5f54-f6bd-410e-bc9c-6fc9d6cb02a5/"
-                    target="_blank" style="text-decoration: none; color: white;">
-
-                    <img src="https://cdn.worldvectorlogo.com/logos/python-5.svg" width="20" height="20" />
-                    Python Practicando. Desde 0 hasta Desarrollador en Python
-                </a>
-            </span>
-            <span>
-            <a href="https://www.udemy.com/certificate/UC-0393c9d0-8b00-4420-b37e-fedb112c5fb6/"
-                target="_blank" style="text-decoration: none; color: white;">
-
-                <img src="https://cdn.worldvectorlogo.com/logos/amazon-web-services-2.svg" width="20" height="20" />
-                Amazon Web Services 
-            </a>
-            </span>
-            <span>
-                    <a href="https://www.skills.google/public_profiles/2b1575e1-1684-4c51-aa2d-d6aefbb0ccaf/badges/24007579?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share" target="_blank"
+                    <a href="https://www.udemy.com/certificate/UC-0c0f5f54-f6bd-410e-bc9c-6fc9d6cb02a5/" target="_blank"
                         style="text-decoration: none; color: white;">
+
+                        <img src="https://cdn.worldvectorlogo.com/logos/python-5.svg" width="20" height="20" />
+                        Python Practicando. Desde 0 hasta Desarrollador en Python
+                    </a>
+                </span>
+                <span>
+                    <a href="https://www.udemy.com/certificate/UC-0393c9d0-8b00-4420-b37e-fedb112c5fb6/" target="_blank"
+                        style="text-decoration: none; color: white;">
+
+                        <img src="https://cdn.worldvectorlogo.com/logos/amazon-web-services-2.svg" width="20"
+                            height="20" />
+                        Amazon Web Services
+                    </a>
+                </span>
+                <span>
+                    <a href="https://www.skills.google/public_profiles/2b1575e1-1684-4c51-aa2d-d6aefbb0ccaf/badges/24007579?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
+                        target="_blank" style="text-decoration: none; color: white;">
 
                         <img src="https://cdn.worldvectorlogo.com/logos/google-cloud-1.svg" alt="Google Cloud"
                             width="20" height="20">
-                       Introducción a los principios de seguridad en la computación en la nube
+                        Introducción a los principios de seguridad en la computación en la nube
                     </a>
-            </span>
-            <span>
-            <a href="https://certificates.simplicdn.net/share/10099991_10389682_1776144949703.pdf"
-            target="_blank" style="text-decoration: none; color: white;">
-            <img src="https://cdn.worldvectorlogo.com/logos/microsoft-5.svg" width="20" height="20" />
-                Certificaciones de Microsoft 
-            </a>
-            </span>
+                </span>
+                <span>
+                    <a href="https://certificates.simplicdn.net/share/10099991_10389682_1776144949703.pdf"
+                        target="_blank" style="text-decoration: none; color: white;">
+                        <img src="https://cdn.worldvectorlogo.com/logos/microsoft-5.svg" width="20" height="20" />
+                        Certificaciones de Microsoft
+                    </a>
+                </span>
 
             </div>
         </section>

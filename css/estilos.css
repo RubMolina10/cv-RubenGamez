@@ -444,7 +444,17 @@ main {
 }
 
 .project-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
     margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.project-action-separator {
+    width: 1px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .btn-primary {
