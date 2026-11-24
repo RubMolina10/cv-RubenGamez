@@ -5,86 +5,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jesús Rubén Gámez Molina | CV</title>
+    <meta name="description"
+        content="CV de Jesús Rubén Gámez Molina, desarrollador de software e Ingeniero en Sistemas Computacionales. Experiencia en .NET, C#, Vue.js, Angular, SQL Server, MongoDB e integración de IA.">
+    <meta name="author" content="Jesús Rubén Gámez Molina">
+
+    <!-- Vista previa al compartir el enlace (LinkedIn, WhatsApp, etc.) -->
+    <meta property="og:type" content="profile">
+    <meta property="og:locale" content="es_MX">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:title" content="Jesús Rubén Gámez Molina | Desarrollador de software">
+    <meta property="og:description"
+        content="Desarrollador de software con experiencia en .NET, C#, Vue.js, Angular, SQL Server, MongoDB e integración de IA.">
+    <meta name="twitter:card" content="summary">
+
+    <!-- Antes de pintar la página:
+         - marca que hay JS (las animaciones no esconden el contenido si el JS falla)
+         - aplica el tema guardado o el del sistema (evita parpadeo)
+         - decide el idioma: ?lang=en|es en la URL > el guardado > el del navegador -->
+    <script>
+        (function () {
+            var root = document.documentElement;
+            root.classList.add('js');
+
+            var theme = null;
+            try { theme = localStorage.getItem('theme'); } catch (e) { }
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            }
+            root.setAttribute('data-theme', theme);
+
+            var lang = null;
+            try { lang = new URLSearchParams(location.search).get('lang'); } catch (e) { }
+            if (lang !== 'es' && lang !== 'en') {
+                try { lang = localStorage.getItem('lang'); } catch (e) { }
+            }
+            if (lang !== 'es' && lang !== 'en') {
+                var first = (navigator.languages && navigator.languages[0]) || navigator.language || 'es';
+                lang = /^es\b/i.test(first) ? 'es' : 'en';
+            }
+            root.setAttribute('data-lang', lang);
+            root.lang = lang;
+            if (lang === 'en') {
+                // Oculta la página hasta traducirla (máximo 3 s por si algo falla)
+                root.classList.add('i18n-pending');
+                setTimeout(function () { root.classList.remove('i18n-pending'); }, 3000);
+            }
+        })();
+    </script>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/estilos.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" href="favicon.ico">
 </head>
 
 <body>
 
     <header>
-        <nav class="navbar glass">
-            <!-- <span class="logo">JM</span> -->
-            <ul class="menu">
-                <li><a href="#inicio" class="active">Inicio</a></li>
-                <li><a href="#sobre-mi">Sobre mí</a></li>
-                <li><a href="#experiencia">Experiencia</a></li>
-                <li><a href="#proyectos-destacados">Proyectos importantes</a></li>
-                <li><a href="#proyectos-personales">Proyectos Personales</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#formacionAcademica">Formación Académica</a></li>
+        <nav class="navbar glass" aria-label="Navegación principal">
+            <button type="button" id="menu-toggle" class="menu-toggle" aria-label="Abrir menú"
+                aria-expanded="false" aria-controls="menu">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+            <a href="#inicio" class="brand">Rubén Gámez</a>
+            <ul class="menu" id="menu">
+                <li><a href="#inicio" class="active" data-i18n="nav.inicio">Inicio</a></li>
+                <li><a href="#sobre-mi" data-i18n="nav.sobre">Sobre mí</a></li>
+                <li><a href="#experiencia" data-i18n="nav.experiencia">Experiencia</a></li>
+                <li><a href="#proyectos-destacados" data-i18n="nav.destacados">Proyectos importantes</a></li>
+                <li><a href="#proyectos-personales" data-i18n="nav.personales">Proyectos Personales</a></li>
+                <li><a href="#habilidades" data-i18n="nav.habilidades">Habilidades</a></li>
+                <li><a href="#formacionAcademica" data-i18n="nav.formacion">Formación Académica</a></li>
+                <li><a href="#cursosCertificaciones" data-i18n="nav.cursos">Cursos</a></li>
+                <li><a href="#aptitudes" data-i18n="nav.aptitudes">Aptitudes</a></li>
             </ul>
+            <div class="nav-actions">
+                <button type="button" id="lang-toggle" class="lang-toggle" lang="en" aria-label="Switch to English"
+                    title="Switch to English">EN</button>
+                <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar a modo claro"
+                    title="Cambiar a modo claro">
+                    <i class="fa-solid fa-sun" aria-hidden="true"></i>
+                </button>
+            </div>
         </nav>
     </header>
     <main>
         <section id="inicio" class="section fade">
             <h1>Jesús Rubén Gámez Molina</h1>
-            <p class="subtitle">
+            <p class="subtitle" data-i18n="inicio.subtitulo">
                 Desarrollador de software | Ingeniero en Sistemas Computacionales
             </p>
-            <p>
+            <p data-i18n="inicio.resumen">
                 Soy Ingeniero en Sistemas Computacionales con amplia experiencia en el
                 desarrollo de software. A lo largo de mi carrera he diseñado e implementado
                 soluciones tecnológicas orientadas a resolver necesidades reales, utilizando
                 diversas tecnologías y lenguajes de programación. Me caracterizo por mi
                 enfoque práctico, mi capacidad de adaptación y mi compromiso con la mejora
                 continua, integrando constantemente nuevas herramientas y metodologías
-                para ofrecer soluciones robustas, eficientes y de alto valor
-                </strong>.
+                para ofrecer <strong>soluciones robustas, eficientes y de alto valor</strong>.
             </p>
         </section>
 
         <section id="sobre-mi" class="section fade">
-            <h2>📍 Sobre mí</h2>
+            <h2 data-i18n="sobre.titulo">📍 Sobre mí</h2>
 
             <ul class="about-list">
-                <li><i class="fa-solid fa-location-dot"></i> Guasave, Sinaloa, México</li>
+                <li>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span data-i18n="sobre.ubicacion">Guasave, Sinaloa, México</span>
+                </li>
                 <li>
                     <i class="fa-solid fa-envelope"></i>
                     <a href="mailto:palomino070715@gmail.com">palomino070715@gmail.com</a>
                 </li>
-                <li><i class="fa-solid fa-phone"></i> (+52) 687-179-68-79</li>
+                <li>
+                    <i class="fa-solid fa-phone"></i>
+                    <a href="tel:+526871796879">(+52) 687-179-68-79</a>
+                </li>
                 <li>
                     <i class="fa-brands fa-linkedin"></i>
-                    <a href="https://www.linkedin.com/in/jesus-ruben-gamez-molina-601159261/" target="_blank">
+                    <a href="https://www.linkedin.com/in/jesus-ruben-gamez-molina-601159261/" target="_blank" rel="noopener">
                         jesus-ruben-gamez-molina
                     </a>
                 </li>
                 <li>
                     <i class="fa-brands fa-github"></i>
-                    <a href="https://github.com/RubMolina10" target="_blank">
+                    <a href="https://github.com/RubMolina10" target="_blank" rel="noopener">
                         RubMolina10
                     </a>
                 </li>
-
-                <li><i class="fa-solid fa-language"></i> Español / Inglés</li>
+                <li>
+                    <i class="fa-solid fa-language"></i>
+                    <span data-i18n="sobre.idiomas">Español / Inglés</span>
+                </li>
             </ul>
         </section>
 
         <section id="experiencia" class="section fade">
-            <h2>💼 Experiencia profesional</h2>
+            <h2 data-i18n="exp.titulo">💼 Experiencia profesional</h2>
 
             <div class="job">
-                <h3>Spyral Systems |Azzule Sytems | Desarrollador de Software</h3>
-                <span>Abril 2025 – Actualidad</span>
-                <ul>
-                    <li> Desarrollo de soluciones web y backend para clientes de diferentes industrias.</li>
+                <h3 data-i18n="exp.azzule.puesto">Spyral Systems | Azzule Systems | Desarrollador de Software</h3>
+                <span data-i18n="exp.azzule.fecha">Abril 2025 – Actualidad</span>
+                <ul data-i18n="exp.azzule.lista">
+                    <li>Desarrollo de soluciones web y backend para clientes de diferentes industrias.</li>
                     <li>Implementación de proyectos orientados a eficiencia operativa, automatización de procesos y
-                        mejora continua. </li>
+                        mejora continua.</li>
                     <li>Uso de tecnologías modernas como .NET 6+, Vue.js 3, REST APIs, y gestión de bases de datos SQL
                         Server y MongoDB.</li>
                     <li>Participación en el diseño y desarrollo de portales empresariales con funcionalidades integradas
@@ -99,18 +167,17 @@
                         comunicación en tiempo real, trazabilidad y observabilidad.</li>
                     <li>Optimización y automatización de procesos mediante IA, logrando reducir tiempos operativos y
                         mejorar la experiencia de usuario en los portales implementados.</li>
-                    <li>Proyectos destacados: AzzuleAI(Portal Web el cual realiza automatizaciones de procesos via
-                        Prompts con Lenguaje Natural)</li>
+                    <li>Proyectos destacados: AzzuleAI (portal web que automatiza procesos mediante prompts en
+                        lenguaje natural).</li>
                 </ul>
             </div>
 
             <div class="job">
-                <h3>Coppel S.A. de C.V. | Desarrollador de Software – Contabilidad y Finanzas</h3>
-                <span>Agosto 2022 – Marzo 2025</span>
-                <ul>
+                <h3 data-i18n="exp.coppel.puesto">Coppel S.A. de C.V. | Desarrollador de Software – Contabilidad y Finanzas</h3>
+                <span data-i18n="exp.coppel.fecha">Agosto 2022 – Marzo 2025</span>
+                <ul data-i18n="exp.coppel.lista">
                     <li>Desarrollo y mantenimiento: Diseño, implementación y mantenimiento de soluciones para sistemas
-                        contables y
-                        financieros, incluyendo facturación, nómina y gestión de impuestos.</li>
+                        contables y financieros, incluyendo facturación, nómina y gestión de impuestos.</li>
                     <li>Proyectos estratégicos: Participación en proyectos clave como MultiIEPS, venta de motos y
                         desarrollo de una aplicación de monitoreo de transacciones con .NET C#.</li>
                     <li>Tecnologías: Experiencia en C#, C++, Java, SQL (PostgreSQL, SQL Server), Java Spring Boot.</li>
@@ -120,9 +187,9 @@
             </div>
 
             <div class="job">
-                <h3>FEOSS | Desarrollador de Software – Asesor y regulador</h3>
-                <span>Enero 2018 – Enero 2022</span>
-                <ul>
+                <h3 data-i18n="exp.feoss.puesto">FEOSS | Desarrollador de Software – Asesor y regulador</h3>
+                <span data-i18n="exp.feoss.fecha">Enero 2018 – Enero 2022</span>
+                <ul data-i18n="exp.feoss.lista">
                     <li>Asesor en regularización de automóviles extranjeros.</li>
                     <li>Desarrollo de sistema de almacenamiento de datos con C# y SQL Server para la gestión de
                         vehículos importados.</li>
@@ -131,25 +198,25 @@
         </section>
 
         <section id="proyectos-destacados" class="section fade">
-            <h2>Proyectos Destacados 🛠️ . 💻</h2>
+            <h2 data-i18n="destacados.titulo">Proyectos Destacados 🛠️ . 💻</h2>
 
             <div class="project-hero">
                 <div class="project-overlay"></div>
                 <div class="project-content">
                     <div class="project-badges">
                         <span>Web Application</span>
-                        <span class="highlight">⭐ IA Assistant</span>
+                        <span class="highlight" data-i18n="azzule.badge.ia">⭐ IA Assistant</span>
                         <span class="live">● Live</span>
                         <span>Supply Chain Program</span>
                     </div>
                     <h3>
-                        <img src="images/az-drk-logo.png" width="60" height="60" title="soapui"
-                            style="background-color: white; border-radius: 50%;" />
+                        <img class="project-logo" src="images/az-drk-logo.png" width="60" height="60"
+                            alt="Logo de Azzule" data-i18n-alt="azzule.logo" />
                         Azzule Systems - Spyral Systems
                     </h3>
 
                     <h4>AzzuleAI Platform</h4>
-                    <p>
+                    <p data-i18n="azzule.descripcion">
                         Azzule es un proveedor líder de soluciones en la nube para la gestión de datos y el cumplimiento
                         normativo en la cadena de suministro alimentaria. Se especializa en inocuidad alimentaria,
                         sostenibilidad y automatización de auditorías, ayudando a productores, empacadores y
@@ -158,52 +225,55 @@
                     </p>
 
                     <div class="project-tech">
-                        .NET 6 · Vue 3 · MongoDB · SQL Server · OpenAI · Javascript
+                        .NET 6 · Vue 3 · MongoDB · SQL Server · OpenAI · JavaScript
                     </div>
                     <div class="project-actions">
-                        <a href="https://azzule.com/portal/" target="_blank" class="btn-primary">Visitar Página Web</a>
+                        <a href="https://azzule.com/portal/" target="_blank" rel="noopener" class="btn-primary"
+                            data-i18n="boton.visitar">Visitar Página Web</a>
                     </div>
                 </div>
             </div>
-            <br>
+
             <div class="project-hero">
                 <div class="project-overlay"></div>
                 <div class="project-content">
                     <div class="project-badges">
-                        <span>Resolución de incidencias</span>
+                        <span data-i18n="coppel.badge.incidencias">Resolución de incidencias</span>
                         <span class="highlight">⭐ CFDI 40</span>
-                        <span class="live">● Cancelación de facturas</span>
-                        <span class="live">●Nómina</span>
-                        <span>Seguridad Código Estatico</span>
-                        <span>Sistemas Legados</span>
+                        <span class="live" data-i18n="coppel.badge.cancelacion">● Cancelación de facturas</span>
+                        <span class="live" data-i18n="coppel.badge.nomina">● Nómina</span>
+                        <span data-i18n="coppel.badge.seguridad">Seguridad Código Estático</span>
+                        <span data-i18n="coppel.badge.legados">Sistemas Legados</span>
                         <span>Evo Payments</span>
-
                     </div>
-                    <h3><img class="img-logo" src="images/Coppel_logo_(2025).png" width="60" height="60" title="soapui"
-                            style="background-color: white; border-radius: 50%;" /> Coppel S.A. de C.V.</h3>
-                    <h2>Proyectos trabajados</h2>
-                    <p>
+                    <h3>
+                        <img class="project-logo" src="images/Coppel_logo_(2025).png" width="60" height="60"
+                            alt="Logo de Coppel" data-i18n-alt="coppel.logo" />
+                        Coppel S.A. de C.V.
+                    </h3>
+                    <h2 data-i18n="coppel.subtitulo">Proyectos trabajados</h2>
+                    <p data-i18n="coppel.descripcion">
                         Durante mi estancia en Coppel participé en diversas actividades, tanto en el desarrollo y
                         mantenimiento de soluciones para sistemas legados como en el desarrollo de soluciones normativas
                         requeridas por el gobierno. Estuve involucrado en proyectos relacionados con temas fiscales,
                         incluyendo nómina, sistemas DRP de facturación con timbrado de facturas y sus posteriores
-                        cancelaciones. A continuación,
-                        se presentan los principales proyectos en los que participé:
+                        cancelaciones. A continuación, se presentan los principales proyectos en los que participé:
                     </p>
-                    <div style="padding: 25px;">
-                        <li>CFDI 40</li>
-                        <li>Multi IPES</li>
-                        <li>Remediación de código estatico</li>
-                        <li>Aumento Umas salarial</li>
+                    <ul class="project-list" data-i18n="coppel.lista">
+                        <li>CFDI 4.0</li>
+                        <li>MultiIEPS</li>
+                        <li>Remediación de código estático</li>
+                        <li>Aumento de UMAs salarial</li>
                         <li>Doble cancelación de motos</li>
                         <li>Arquitectura/Documentación</li>
                         <li>Monitoreo de transacciones Evo Payments</li>
-                    </div>
+                    </ul>
                     <div class="project-tech">
-                        .C# · C++ · PostgreSQL · SQL Server · Angular · Java · Spring · Soap UI · Azure DevOps
+                        C# · C++ · PostgreSQL · SQL Server · Angular · Java · Spring · Soap UI · Azure DevOps
                     </div>
                     <div class="project-actions">
-                        <a href="https://www.coppel.com/" target="_blank" class="btn-primary">Visitar Página Web</a>
+                        <a href="https://www.coppel.com/" target="_blank" rel="noopener" class="btn-primary"
+                            data-i18n="boton.visitar">Visitar Página Web</a>
                     </div>
                 </div>
             </div>
@@ -211,158 +281,82 @@
 
         <!-- Sección de proyectos personales -->
         <section id="proyectos-personales" class="section fade">
-            <h2>Proyectos personales 💡</h2>
-            <br>
+            <h2 data-i18n="personales.titulo">Proyectos personales 💡</h2>
 
             <div class="project-hero">
-
                 <div class="project-overlay"></div>
-
                 <div class="project-content">
-
                     <div class="project-badges">
-                        <span>Inteligencia Artificial</span>
+                        <span data-i18n="codeai.badge.ia">Inteligencia Artificial</span>
                         <span class="highlight">⭐ OpenAI API</span>
                         <span class="live">● GitHub Integration</span>
                         <span class="live">● Code Analysis</span>
-                        <span>Autenticación Segura</span>
-                        <span>Control de Acceso</span>
+                        <span data-i18n="codeai.badge.auth">Autenticación Segura</span>
+                        <span data-i18n="codeai.badge.acceso">Control de Acceso</span>
                         <span>SQL Server</span>
                     </div>
 
-                    <h3>
-                        CodeAI – Developer Intelligence Dashboard
-                    </h3>
+                    <h3>CodeAI – Developer Intelligence Dashboard</h3>
 
-                    <h2>
-                        Proyecto personal
-                    </h2>
+                    <h2 data-i18n="codeai.subtitulo">Proyecto personal</h2>
 
-                    <p>
+                    <p data-i18n="codeai.descripcion">
                         CodeAI es una plataforma web de análisis inteligente de código diseñada
                         para centralizar la gestión de proyectos de software, analizar cambios
                         en repositorios y detectar posibles problemas de calidad, mantenibilidad
                         y riesgo mediante inteligencia artificial.
                         <br><br>
-
                         La solución fue desarrollada con Angular en el frontend y Node.js,
                         Fastify y TypeScript en el backend, utilizando SQL Server para la
                         persistencia de proyectos, usuarios, sesiones, análisis y hallazgos.
                         <br><br>
-
                         CodeAI se integra con GitHub para consultar repositorios, ramas y commits,
                         permitiendo seleccionar cambios específicos de un proyecto y enviarlos
                         a un motor de análisis basado en inteligencia artificial.
                         <br><br>
-
                         El sistema procesa los archivos modificados en cada commit y genera
                         información técnica como nivel de riesgo, Code Health, resumen del
                         análisis y hallazgos clasificados por severidad, categoría, archivo
                         y línea de código.
                         <br><br>
-
                         La plataforma también incorpora un sistema completo de autenticación
                         y autorización. Las contraseñas son protegidas mediante Argon2id y las
                         sesiones utilizan tokens seguros almacenados mediante cookies HttpOnly,
                         manteniendo únicamente el hash correspondiente de cada sesión en
                         SQL Server.
                         <br><br>
-
                         CodeAI cuenta con roles de Administrador y Usuario, protección de rutas
                         tanto en Angular como en el backend y un sistema de asignación de
                         proyectos por usuario, permitiendo controlar qué proyectos puede
                         consultar y analizar cada cuenta.
                         <br><br>
-
                         El proyecto fue desarrollado utilizando una arquitectura modular,
                         separando responsabilidades entre autenticación, usuarios, proyectos,
                         análisis, integración con GitHub, inteligencia artificial y acceso
                         a datos.
                     </p>
 
-                    <div style="padding: 25px;">
-
-                        <ul>
-
-                            <li>
-                                Dashboard centralizado de métricas y análisis.
-                            </li>
-
-                            <li>
-                                Gestión de proyectos y tecnologías.
-                            </li>
-
-                            <li>
-                                Integración con repositorios de GitHub.
-                            </li>
-
-                            <li>
-                                Consulta de ramas y commits.
-                            </li>
-
-                            <li>
-                                Análisis de código mediante inteligencia artificial.
-                            </li>
-
-                            <li>
-                                Análisis individual de commits.
-                            </li>
-
-                            <li>
-                                Detección y clasificación de hallazgos técnicos.
-                            </li>
-
-                            <li>
-                                Clasificación de hallazgos por severidad.
-                            </li>
-
-                            <li>
-                                Métricas de Code Health y nivel de riesgo.
-                            </li>
-
-                            <li>
-                                Historial de ejecuciones de análisis.
-                            </li>
-
-                            <li>
-                                Sistema de autenticación y autorización.
-                            </li>
-
-                            <li>
-                                Contraseñas protegidas mediante Argon2id.
-                            </li>
-
-                            <li>
-                                Sesiones seguras mediante cookies HttpOnly.
-                            </li>
-
-                            <li>
-                                Sesiones revocables almacenadas en SQL Server.
-                            </li>
-
-                            <li>
-                                Protección de rutas mediante Guards en Angular.
-                            </li>
-
-                            <li>
-                                Roles de Administrador y Usuario.
-                            </li>
-
-                            <li>
-                                Administración de usuarios desde el dashboard.
-                            </li>
-
-                            <li>
-                                Asignación de proyectos específicos por usuario.
-                            </li>
-
-                            <li>
-                                Validación de permisos desde el backend.
-                            </li>
-
-                        </ul>
-
-                    </div>
+                    <ul class="project-list" data-i18n="codeai.lista">
+                        <li>Dashboard centralizado de métricas y análisis.</li>
+                        <li>Gestión de proyectos y tecnologías.</li>
+                        <li>Integración con repositorios de GitHub.</li>
+                        <li>Consulta de ramas y commits.</li>
+                        <li>Análisis de código mediante inteligencia artificial.</li>
+                        <li>Análisis individual de commits.</li>
+                        <li>Detección y clasificación de hallazgos técnicos.</li>
+                        <li>Clasificación de hallazgos por severidad.</li>
+                        <li>Métricas de Code Health y nivel de riesgo.</li>
+                        <li>Historial de ejecuciones de análisis.</li>
+                        <li>Sistema de autenticación y autorización.</li>
+                        <li>Contraseñas protegidas mediante Argon2id.</li>
+                        <li>Sesiones seguras mediante cookies HttpOnly.</li>
+                        <li>Sesiones revocables almacenadas en SQL Server.</li>
+                        <li>Protección de rutas mediante Guards en Angular.</li>
+                        <li>Roles de Administrador y Usuario.</li>
+                        <li>Administración de usuarios desde el dashboard.</li>
+                        <li>Asignación de proyectos específicos por usuario.</li>
+                        <li>Validación de permisos desde el backend.</li>
+                    </ul>
 
                     <div class="project-tech">
                         Angular · TypeScript · Node.js · Fastify · SQL Server ·
@@ -371,245 +365,188 @@
                     </div>
 
                     <div class="project-actions">
-
-                        <a href="https://github.com/RubMolina10/code-ai-dashboard.git" target="_blank"
-                            class="btn-primary">
-                            Ver código Frontend
-                        </a>
+                        <a href="https://github.com/RubMolina10/code-ai-dashboard.git" target="_blank" rel="noopener"
+                            class="btn-primary" data-i18n="codeai.boton.frontend">Ver código Frontend</a>
 
                         <span class="project-action-separator"></span>
 
-                        <a href="https://github.com/RubMolina10/code-ai-api.git" target="_blank" class="btn-primary">
-                            Ver código Backend
-                        </a>
+                        <a href="https://github.com/RubMolina10/code-ai-api.git" target="_blank" rel="noopener"
+                            class="btn-primary" data-i18n="codeai.boton.backend">Ver código Backend</a>
 
                         <span class="project-action-separator"></span>
 
-                        <a href="https://github.com/RubMolina10/code-ai-api-database.git" target="_blank"
-                            class="btn-primary">
-                            Ver configuración de BD
-                        </a>
-
+                        <a href="https://github.com/RubMolina10/code-ai-api-database.git" target="_blank" rel="noopener"
+                            class="btn-primary" data-i18n="codeai.boton.bd">Ver configuración de BD</a>
                     </div>
-
                 </div>
-
             </div>
-
         </section>
+
         <section id="habilidades" class="section fade">
-            <h2>🛠️ Habilidades técnicas</h2>
+            <h2 data-i18n="habilidades.titulo">🛠️ Habilidades técnicas</h2>
             <h3>🔧 Backend</h3>
-            <div class="skills">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
-                    width="40" height="40" title="C++" />
-            </div>
+            <ul class="skills">
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="" width="40" height="40" loading="lazy">C#</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" alt="" width="40" height="40" loading="lazy">.NET</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="" width="40" height="40" loading="lazy">Java</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="" width="40" height="40" loading="lazy">Spring</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="" width="40" height="40" loading="lazy">Node.js</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="" width="40" height="40" loading="lazy">Python</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" alt="" width="40" height="40" loading="lazy">GraphQL</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="" width="40" height="40" loading="lazy">C++</li>
+            </ul>
             <h3>🎨 Frontend</h3>
-            <div class="skills">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                    width="40" height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
-                    width="40" height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg"
-                    width="40" height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"
-                    width="40" height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
-                    width="40" height="40" />
-            </div>
-            <h3>🗄️ Bases de Datos</h3>
-            <div class="skills">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
-                    width="40" height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg"
-                    width="40" height="40" />
-            </div>
-            <h3>☁️ Cloud & DevOps</h3>
-            <div class="skills">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" width="40"
-                    height="40" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" width="40"
-                    height="40" />
-            </div>
-            <h3>🧰 Otras herramientas</h3>
-            <div class="skills">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" width="40"
-                    height="40" title="Jira" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" width="40"
-                    height="40" title="Planner (Microsoft)" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" width="40"
-                    height="40" title="Postman" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="40"
-                    height="40" title="Git" />
-                <img src="images/linq.png" width="40" height="40" title="soapui" />
-                <img src="images\soapui.png" width="40" height="40" title="soapui" />
-            </div>
-            <h3>💻 Sistemas Operativos</h3>
-            <div class="skills">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" width="60"
-                    height="60" title="Linux" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" width="60"
-                    height="60" title="macOS" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" width="60"
-                    height="60" title="Windows" />
-            </div>
+            <ul class="skills">
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" width="40" height="40" loading="lazy">HTML5</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" width="40" height="40" loading="lazy">CSS3</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" width="40" height="40" loading="lazy">JavaScript</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="" width="40" height="40" loading="lazy">TypeScript</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="" width="40" height="40" loading="lazy">Vue.js</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="" width="40" height="40" loading="lazy">Angular</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="" width="40" height="40" loading="lazy">React</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="" width="40" height="40" loading="lazy">Bootstrap</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="" width="40" height="40" loading="lazy">Tailwind CSS</li>
+            </ul>
+            <h3 data-i18n="habilidades.bd">🗄️ Bases de Datos</h3>
+            <ul class="skills">
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="" width="40" height="40" loading="lazy">SQL Server</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="" width="40" height="40" loading="lazy">MongoDB</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="" width="40" height="40" loading="lazy">PostgreSQL</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="" width="40" height="40" loading="lazy">MySQL</li>
+            </ul>
+            <h3>☁️ Cloud &amp; DevOps</h3>
+            <ul class="skills">
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="" width="40" height="40" loading="lazy">Azure</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="" width="40" height="40" loading="lazy">Docker</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" width="40" height="40" loading="lazy">Git</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" alt="" width="40" height="40" loading="lazy">GitLab</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" alt="" width="40" height="40" loading="lazy">Jenkins</li>
+            </ul>
+            <h3 data-i18n="habilidades.otras">🧰 Otras herramientas</h3>
+            <ul class="skills">
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" alt="" width="40" height="40" loading="lazy">Jira</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="" width="40" height="40" loading="lazy">Planner</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="" width="40" height="40" loading="lazy">Postman</li>
+                <li class="skill"><img src="images/linq.png" alt="" width="40" height="40" loading="lazy">LINQ</li>
+                <li class="skill"><img src="images/soapui.png" alt="" width="40" height="40" loading="lazy">SoapUI</li>
+            </ul>
+            <h3 data-i18n="habilidades.so">💻 Sistemas Operativos</h3>
+            <ul class="skills">
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="" width="40" height="40" loading="lazy">Windows</li>
+                <li class="skill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="" width="40" height="40" loading="lazy">Linux</li>
+                <li class="skill"><img class="invert-dark" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="" width="40" height="40" loading="lazy">macOS</li>
+            </ul>
         </section>
+
         <section id="formacionAcademica" class="section fade">
-            <h2>📚 Formación Académica</h2>
+            <h2 data-i18n="formacion.titulo">📚 Formación Académica</h2>
 
             <div class="edu-container">
 
                 <div class="edu-card">
                     <h3>Instituto Tecnológico Superior de Guasave</h3>
-                    <p class="degree">Ingeniero en Sistemas Computacionales</p>
-                    <span class="date">📅 Agosto 2018 – Diciembre 2022</span>
+                    <p class="degree" data-i18n="formacion.itsg.titulo">Ingeniero en Sistemas Computacionales</p>
+                    <span class="date" data-i18n="formacion.itsg.fecha">📅 Agosto 2018 – Diciembre 2022</span>
                 </div>
 
                 <div class="edu-card">
                     <h3>Centro de Estudios Tecnológicos Industrial y de Servicios No. 108</h3>
-                    <p class="degree">Técnico en Programación</p>
-                    <span class="date">📅 Agosto 2015 – Julio 2018</span>
+                    <p class="degree" data-i18n="formacion.cetis.titulo">Técnico en Programación</p>
+                    <span class="date" data-i18n="formacion.cetis.fecha">📅 Agosto 2015 – Julio 2018</span>
                 </div>
 
             </div>
         </section>
+
         <section id="cursosCertificaciones" class="section fade">
-            <h2>📘 Cursos y Certificaciones</h2>
+            <h2 data-i18n="cursos.titulo">📘 Cursos y Certificaciones</h2>
 
             <div class="courses-badges">
-                <span>🐳 Despliegue de MySQL con Docker</span>
-                <span>🐳 Fundamentos de Docker</span>
-                <span>📊 Metodologías ágiles
-                    <small>(Emerging Technologies Institute)</small>
-                </span>
-                <span>🚀 Introducción a las Tecnologías Emergentes</span>
+                <span data-i18n="cursos.mysqlDocker">🐳 Despliegue de MySQL con Docker</span>
+                <span data-i18n="cursos.docker">🐳 Fundamentos de Docker</span>
+                <span data-i18n="cursos.agiles">📊 Metodologías ágiles <small>(Emerging Technologies Institute)</small></span>
+                <span data-i18n="cursos.emergentes">🚀 Introducción a las Tecnologías Emergentes</span>
                 <span>📈 Google Data Studio</span>
-                <span><a href="https://www.udemy.com/certificate/UC-12a41521-dd4e-4f59-93b0-30d2ccdbe5cc/?utm_source=sendgrid.com&utm_medium=email&utm_campaign=email"
-                        target="_blank" style="text-decoration: none; color: white;">
-                        🅰️💻 Universidad Angular - De Cero a Experto en Angular!</a></span>
+                <span>
+                    <a href="https://www.udemy.com/certificate/UC-12a41521-dd4e-4f59-93b0-30d2ccdbe5cc/?utm_source=sendgrid.com&utm_medium=email&utm_campaign=email"
+                        target="_blank" rel="noopener">
+                        🅰️💻 <span data-i18n="cursos.angular">Universidad Angular - De Cero a Experto en Angular!</span>
+                    </a>
+                </span>
                 <span>
                     <a href="https://www.credly.com/badges/7ac1e99c-40ff-4b7c-b9dd-3202a1df4286/linked_in_profile"
-                        target="_blank" style="text-decoration: none; color: white;">
-
+                        target="_blank" rel="noopener">
                         <i class="fa-brands fa-envira"></i>
                         MongoDB Schema Design Patterns and Anti-patterns Skill Badge
-
                     </a>
                 </span>
                 <span>
                     <a href="https://www.credly.com/badges/c2cbeaca-a65d-47ed-959b-5f93890b5bb5/linked_in_profile"
-                        target="_blank" style="text-decoration: none; color: white;">
-
+                        target="_blank" rel="noopener">
                         <i class="fa-brands fa-envira"></i>
                         From Relational Model (SQL) to MongoDB's Document Model
-
                     </a>
                 </span>
                 <span>
-                    <a href="https://skillshop.exceedlms.com/student/award/xVqG4i1wdf9TqsdQKnJ1NFmm" target="_blank"
-                        style="text-decoration: none; color: white;">
-
-                        <img src="https://cdn.worldvectorlogo.com/logos/google-cloud-1.svg" alt="Google Cloud"
-                            width="20" height="20">
+                    <a href="https://skillshop.exceedlms.com/student/award/xVqG4i1wdf9TqsdQKnJ1NFmm" target="_blank" rel="noopener">
+                        <img src="https://cdn.worldvectorlogo.com/logos/google-cloud-1.svg" alt="" width="20" height="20">
                         Google Cloud Computing Badge
                     </a>
                 </span>
                 <span>
                     <a href="https://www.linkedin.com/learning/certificates/9401c2b2d3a1baadae1059f6009ed200aa6d56979293f86b597d2adb5310fc52"
-                        target="_blank" style="text-decoration: none; color: white;">
-
-                        <img src="https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg" width="20" height="20" />
-                        Despliegue de MySQL con Docker - Linkedin
+                        target="_blank" rel="noopener">
+                        <img src="https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg" alt="" width="20" height="20" />
+                        <span data-i18n="cursos.linkedinMysql">Despliegue de MySQL con Docker - Linkedin</span>
                     </a>
                 </span>
                 <span>
                     <a href="https://www.linkedin.com/learning/certificates/e2dcff28b792035afb6400dd5e0883427e7c1e84c4c255d354945652682bccc0"
-                        target="_blank" style="text-decoration: none; color: white;">
-
-                        <img src="https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg" width="20" height="20" />
-                        GitHub para programadores - Linkedin
+                        target="_blank" rel="noopener">
+                        <img src="https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg" alt="" width="20" height="20" />
+                        <span data-i18n="cursos.linkedinGithub">GitHub para programadores - Linkedin</span>
                     </a>
                 </span>
                 <span>
                     <a href="https://www.linkedin.com/learning/certificates/cdea2db0f30a39fa124bbd17a1f727892bfc899c9db790fa426a3d9b6f2f74aa"
-                        target="_blank" style="text-decoration: none; color: white;">
-
-                        <img src="https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg" width="20" height="20" />
-                        Docker esencial - Linkedin
+                        target="_blank" rel="noopener">
+                        <img src="https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg" alt="" width="20" height="20" />
+                        <span data-i18n="cursos.linkedinDocker">Docker esencial - Linkedin</span>
                     </a>
                 </span>
                 <span>
-                    <a href="https://www.udemy.com/certificate/UC-0c0f5f54-f6bd-410e-bc9c-6fc9d6cb02a5/" target="_blank"
-                        style="text-decoration: none; color: white;">
-
-                        <img src="https://cdn.worldvectorlogo.com/logos/python-5.svg" width="20" height="20" />
-                        Python Practicando. Desde 0 hasta Desarrollador en Python
+                    <a href="https://www.udemy.com/certificate/UC-0c0f5f54-f6bd-410e-bc9c-6fc9d6cb02a5/" target="_blank" rel="noopener">
+                        <img src="https://cdn.worldvectorlogo.com/logos/python-5.svg" alt="" width="20" height="20" />
+                        <span data-i18n="cursos.python">Python Practicando. Desde 0 hasta Desarrollador en Python</span>
                     </a>
                 </span>
                 <span>
-                    <a href="https://www.udemy.com/certificate/UC-0393c9d0-8b00-4420-b37e-fedb112c5fb6/" target="_blank"
-                        style="text-decoration: none; color: white;">
-
-                        <img src="https://cdn.worldvectorlogo.com/logos/amazon-web-services-2.svg" width="20"
-                            height="20" />
+                    <a href="https://www.udemy.com/certificate/UC-0393c9d0-8b00-4420-b37e-fedb112c5fb6/" target="_blank" rel="noopener">
+                        <img src="https://cdn.worldvectorlogo.com/logos/amazon-web-services-2.svg" alt="" width="20" height="20" />
                         Amazon Web Services
                     </a>
                 </span>
                 <span>
                     <a href="https://www.skills.google/public_profiles/2b1575e1-1684-4c51-aa2d-d6aefbb0ccaf/badges/24007579?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
-                        target="_blank" style="text-decoration: none; color: white;">
-
-                        <img src="https://cdn.worldvectorlogo.com/logos/google-cloud-1.svg" alt="Google Cloud"
-                            width="20" height="20">
-                        Introducción a los principios de seguridad en la computación en la nube
+                        target="_blank" rel="noopener">
+                        <img src="https://cdn.worldvectorlogo.com/logos/google-cloud-1.svg" alt="" width="20" height="20">
+                        <span data-i18n="cursos.seguridadNube">Introducción a los principios de seguridad en la computación en la nube</span>
                     </a>
                 </span>
                 <span>
                     <a href="https://certificates.simplicdn.net/share/10099991_10389682_1776144949703.pdf"
-                        target="_blank" style="text-decoration: none; color: white;">
-                        <img src="https://cdn.worldvectorlogo.com/logos/microsoft-5.svg" width="20" height="20" />
-                        Certificaciones de Microsoft
+                        target="_blank" rel="noopener">
+                        <img src="https://cdn.worldvectorlogo.com/logos/microsoft-5.svg" alt="" width="20" height="20" />
+                        <span data-i18n="cursos.microsoft">Certificaciones de Microsoft</span>
                     </a>
                 </span>
-
             </div>
         </section>
-        <section id="aptitudes" class="section fade">
-            <h2>💡 Aptitudes</h2>
 
-            <div class="skills-badges">
+        <section id="aptitudes" class="section fade">
+            <h2 data-i18n="aptitudes.titulo">💡 Aptitudes</h2>
+
+            <div class="skills-badges" data-i18n="aptitudes.lista">
                 <span>Trabajo en equipo</span>
                 <span>Gestión del tiempo</span>
                 <span>Organización</span>
@@ -619,11 +556,13 @@
 
         <div class="cv-download">
             <a href="assets/CV_ActualizadoJESUSRUBENGAMEZ.pdf" download class="btn-cv">
-                <i class="fa-solid fa-file-arrow-down"></i> Descargar CV
+                <i class="fa-solid fa-file-arrow-down"></i>
+                <span data-i18n="cv.descargar">Descargar CV</span>
             </a>
         </div>
     </main>
 
+    <script src="js/i18n.js"></script>
     <script src="js/script.js"></script>
 </body>
 
