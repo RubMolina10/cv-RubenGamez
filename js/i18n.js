@@ -18,6 +18,9 @@ window.I18N = {
             langButton: 'EN',
             langButtonLabel: 'Switch to English',
             langButtonLang: 'en',
+            copyEmail: 'Copiar correo',
+            copied: '¡Correo copiado!',
+            copyFailed: 'No se pudo copiar el correo',
             description: 'CV de Jesús Rubén Gámez Molina, desarrollador de software e Ingeniero en Sistemas Computacionales. Experiencia en .NET, C#, Vue.js, Angular, SQL Server, MongoDB e integración de IA.'
         },
         en: {
@@ -29,6 +32,9 @@ window.I18N = {
             langButton: 'ES',
             langButtonLabel: 'Cambiar a español',
             langButtonLang: 'es',
+            copyEmail: 'Copy email',
+            copied: 'Email copied!',
+            copyFailed: 'Could not copy the email',
             description: 'Resume of Jesús Rubén Gámez Molina, software developer and Computer Systems Engineer. Experience with .NET, C#, Vue.js, Angular, SQL Server, MongoDB and AI integration.'
         }
     },
@@ -210,6 +216,12 @@ window.I18N = {
             '<span>Time management</span>' +
             '<span>Organization</span>' +
             '<span>Self-taught</span>',
+
+        // Contacto
+        'contacto.titulo': "Let's talk",
+        'contacto.texto': 'If you have a project or an opportunity in mind, drop me a line. I would be glad to chat.',
+        'contacto.correo': 'Email',
+        'contacto.telefono': 'Phone',
 
         // Descargar CV (el PDF solo existe en español)
         'cv.descargar': 'Download CV (Spanish PDF)'

@@ -136,6 +136,11 @@ function applyLang(lang) {
     langToggle.title = ui('langButtonLabel');
     langToggle.setAttribute('lang', ui('langButtonLang'));
 
+    document.querySelectorAll('.contact-copy').forEach(button => {
+        button.setAttribute('aria-label', ui('copyEmail'));
+        button.title = ui('copyEmail');
+    });
+
     // Los botones de tema y menú también cambian de idioma
     applyTheme(currentTheme());
     setMenuOpen(isMenuOpen());
@@ -161,6 +166,7 @@ langToggle.addEventListener('click', () => {
     applyLang(next);
     storageSet('lang', next);
     updateUrlLang(next);
+    positionIndicator(); // los textos cambian de ancho
 });
 
 applyLang(currentLang());
@@ -185,12 +191,42 @@ if ('IntersectionObserver' in window) {
 }
 
 // ===================== SECCIÓN ACTIVA EN EL MENÚ =====================
-const links = document.querySelectorAll('.menu a');
+const menuEl = document.getElementById('menu');
+const indicator = menuEl.querySelector('.menu-indicator');
+const links = menuEl.querySelectorAll('a');
+
+// Orden de cada opción para que en celular entren una tras otra
+links.forEach((link, i) => link.parentElement.style.setProperty('--i', i));
+
+// Mueve la píldora a la opción activa (solo en el menú de escritorio)
+function positionIndicator() {
+    const active = menuEl.querySelector('a.active');
+    if (!active || !indicator || getComputedStyle(indicator).display === 'none') {
+        menuEl.classList.remove('has-indicator');
+        return;
+    }
+
+    indicator.style.setProperty('--ind-x', `${active.offsetLeft}px`);
+    indicator.style.setProperty('--ind-y', `${active.offsetTop}px`);
+    indicator.style.setProperty('--ind-w', `${active.offsetWidth}px`);
+    indicator.style.setProperty('--ind-h', `${active.offsetHeight}px`);
+    menuEl.classList.add('has-indicator');
+
+    // La primera vez se coloca sin animación; después ya se desliza
+    if (!menuEl.classList.contains('indicator-ready')) {
+        requestAnimationFrame(() => menuEl.classList.add('indicator-ready'));
+    }
+}
+
+// Solo cuentan las secciones que tienen opción en el menú (Contacto no la tiene)
+const navSections = Array.from(sections).filter(section =>
+    Array.from(links).some(link => link.getAttribute('href') === `#${section.id}`));
 
 function updateActiveLink() {
-    let current = '';
+    // Arriba de todo (antes de la primera sección) se marca Inicio
+    let current = navSections.length ? navSections[0].getAttribute('id') : '';
 
-    sections.forEach(section => {
+    navSections.forEach(section => {
         const top = section.offsetTop - 120;
         if (window.scrollY >= top) {
             current = section.getAttribute('id');
@@ -199,14 +235,111 @@ function updateActiveLink() {
 
     // Al llegar al final, marcar la última sección aunque sea corta
     const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
-    if (atBottom && sections.length) {
-        current = sections[sections.length - 1].getAttribute('id');
+    if (atBottom && navSections.length) {
+        current = navSections[navSections.length - 1].getAttribute('id');
     }
 
+    let changed = false;
     links.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+        const isActive = link.getAttribute('href') === `#${current}`;
+        if (link.classList.contains('active') !== isActive) {
+            link.classList.toggle('active', isActive);
+            changed = true;
+        }
     });
+
+    if (changed) {
+        positionIndicator();
+    }
 }
 
-window.addEventListener('scroll', updateActiveLink, { passive: true });
+// ===================== NAVBAR COMPACTO Y PROGRESO DE LECTURA =====================
+function updateNavbar() {
+    navbar.classList.toggle('scrolled', window.scrollY > 24);
+
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0;
+    navbar.style.setProperty('--progress', progress.toFixed(4));
+}
+
+// Un solo cálculo por cuadro aunque el scroll dispare muchos eventos
+let scrollQueued = false;
+window.addEventListener('scroll', () => {
+    if (scrollQueued) return;
+    scrollQueued = true;
+    requestAnimationFrame(() => {
+        scrollQueued = false;
+        updateActiveLink();
+        updateNavbar();
+    });
+}, { passive: true });
+
+window.addEventListener('resize', () => {
+    positionIndicator();
+    updateNavbar();
+});
+
 updateActiveLink();
+positionIndicator();
+updateNavbar();
+
+// ===================== CONTACTO: COPIAR CORREO =====================
+const toast = document.getElementById('toast');
+let toastTimer = null;
+
+function showToast(message) {
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
+// Respaldo para navegadores sin la API del portapapeles (o al abrir el archivo localmente)
+function copyWithSelection(text) {
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.select();
+    let ok = false;
+    try {
+        ok = document.execCommand('copy');
+    } catch (e) {
+        ok = false;
+    }
+    area.remove();
+    return ok;
+}
+
+function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text).then(() => true, () => copyWithSelection(text));
+    }
+    return Promise.resolve(copyWithSelection(text));
+}
+
+document.querySelectorAll('.contact-copy').forEach(button => {
+    button.addEventListener('click', () => {
+        copyText(button.dataset.copy).then(ok => {
+            showToast(ok ? ui('copied') : ui('copyFailed'));
+            if (!ok) return;
+
+            const icon = button.querySelector('i');
+            button.classList.add('copied');
+            icon.className = 'fa-solid fa-check';
+            setTimeout(() => {
+                button.classList.remove('copied');
+                icon.className = 'fa-regular fa-copy';
+            }, 2000);
+        });
+    });
+});
+
+// Año del pie de página
+const year = document.getElementById('year');
+if (year) {
+    year.textContent = new Date().getFullYear();
+}

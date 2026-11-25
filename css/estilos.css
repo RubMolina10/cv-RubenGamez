@@ -20,8 +20,12 @@
     --accent-soft: rgba(88, 166, 255, 0.18);
     --on-accent: #0d1117;
     --hover-bg: rgba(255, 255, 255, 0.08);
-    --nav-bg: rgba(22, 27, 34, 0.75);
-    --nav-border: rgba(255, 255, 255, 0.12);
+    --accent-2: #a371f7;
+    --accent-ring: rgba(88, 166, 255, 0.35);
+    --nav-bg: rgba(22, 27, 34, 0.72);
+    --nav-bg-solid: rgba(22, 27, 34, 0.92);
+    --nav-border: rgba(255, 255, 255, 0.1);
+    --nav-highlight: rgba(255, 255, 255, 0.06);
     --nav-shadow: 0 10px 40px rgba(0, 0, 0, .4);
     --badge-bg: rgba(255, 255, 255, 0.08);
     --badge-border: rgba(255, 255, 255, 0.15);
@@ -52,8 +56,12 @@
     --accent-soft: rgba(9, 105, 218, 0.12);
     --on-accent: #ffffff;
     --hover-bg: rgba(31, 35, 40, 0.06);
-    --nav-bg: rgba(255, 255, 255, 0.8);
+    --accent-2: #8250df;
+    --accent-ring: rgba(9, 105, 218, 0.3);
+    --nav-bg: rgba(255, 255, 255, 0.78);
+    --nav-bg-solid: rgba(255, 255, 255, 0.94);
     --nav-border: rgba(31, 35, 40, 0.12);
+    --nav-highlight: rgba(255, 255, 255, 0.8);
     --nav-shadow: 0 10px 30px rgba(31, 35, 40, .12);
     --badge-bg: #ffffff;
     --badge-border: #d0d7de;
@@ -101,16 +109,39 @@ header {
 }
 
 .navbar {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 24px;
-    padding: 14px 24px;
+    gap: 20px;
+    padding: 10px 12px 10px 18px;
     border-radius: 999px;
     background: var(--nav-bg);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
     border: 1px solid var(--nav-border);
-    box-shadow: var(--nav-shadow);
+    box-shadow: var(--nav-shadow), inset 0 1px 0 var(--nav-highlight);
+    transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Al bajar, el navbar se compacta y se vuelve más sólido */
+.navbar.scrolled {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    background: var(--nav-bg-solid);
+}
+
+/* Barra de progreso de lectura */
+.nav-progress {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: -1px;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    transform: scaleX(var(--progress, 0));
+    transform-origin: left center;
+    pointer-events: none;
 }
 
 /* Nombre y botón de menú: solo en pantallas chicas */
@@ -120,9 +151,28 @@ header {
 }
 
 .brand {
+    align-items: center;
+    gap: 10px;
     font-weight: 700;
     color: var(--heading);
     text-decoration: none;
+    letter-spacing: 0.2px;
+}
+
+/* Monograma con las iniciales */
+.brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px var(--accent-soft);
 }
 
 /* BOTONES DE IDIOMA Y TEMA */
@@ -185,50 +235,75 @@ header {
 
 /* MENU */
 .menu {
+    position: relative;
     list-style: none;
     display: flex;
-    flex-wrap: wrap;
-    gap: 18px;
+    align-items: center;
+    gap: 2px;
     margin: 0;
     padding: 0;
 }
 
 .menu a {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 10px;
+    border-radius: 999px;
     text-decoration: none;
-    color: var(--text);
-    font-size: 0.95rem;
+    color: var(--muted);
+    font-size: 0.9rem;
     font-weight: 500;
     white-space: nowrap;
-    position: relative;
-    padding: 6px 2px;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Los íconos solo se muestran en el menú de celular */
+.menu a i {
+    display: none;
 }
 
 .menu a:hover {
-    background: var(--hover-bg);
     color: var(--heading);
-}
-
-/* Línea animada */
-.menu a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 0;
-    height: 2px;
-    background: var(--accent);
-    transition: width 0.25s ease;
+    background: var(--hover-bg);
 }
 
 .menu a.active {
-    background: var(--accent-soft);
     color: var(--accent);
+    background: var(--accent-soft);
 }
 
-.menu a.active::after,
-.menu a:hover::after {
-    width: 100%;
+/* Con el indicador funcionando, el fondo del activo lo pone la píldora */
+.menu.has-indicator a.active {
+    background: transparent;
+}
+
+/* Píldora que se desliza hasta la sección activa */
+.menu-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: var(--ind-w, 0);
+    height: var(--ind-h, 0);
+    transform: translate(var(--ind-x, 0), var(--ind-y, 0));
+    border-radius: 999px;
+    background: var(--accent-soft);
+    box-shadow: inset 0 0 0 1px var(--accent-ring);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.menu.has-indicator .menu-indicator {
+    opacity: 1;
+}
+
+.menu.indicator-ready .menu-indicator {
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.2s ease;
 }
 
 /* ===================== MAIN ===================== */
@@ -273,9 +348,278 @@ main {
     color: var(--accent);
 }
 
-/* ===================== EXPERIENCE ===================== */
+/* ===================== EXPERIENCE (línea de tiempo) ===================== */
+.timeline {
+    position: relative;
+    padding-left: 32px;
+}
+
+/* La línea vertical */
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, var(--accent), var(--accent-2) 60%, var(--border-strong));
+}
+
 .job {
-    margin-bottom: 25px;
+    position: relative;
+    margin-bottom: 22px;
+    padding: 20px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.job:last-child {
+    margin-bottom: 0;
+}
+
+.job:hover {
+    border-color: var(--accent-ring);
+    transform: translateX(4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* El punto de cada empleo sobre la línea */
+.job::before {
+    content: "";
+    position: absolute;
+    left: -33px;
+    top: 24px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 3px solid var(--accent);
+}
+
+/* El empleo actual: punto relleno que late */
+.job-current::before {
+    background: var(--accent);
+    animation: dot-pulse 2.4s ease-out infinite;
+}
+
+@keyframes dot-pulse {
+    0% {
+        box-shadow: 0 0 0 0 var(--accent-ring);
+    }
+
+    70%,
+    100% {
+        box-shadow: 0 0 0 10px transparent;
+    }
+}
+
+.job h3 {
+    margin: 0 0 6px;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: var(--heading);
+}
+
+.job-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.job ul {
+    margin: 14px 0 0;
+    padding-left: 20px;
+}
+
+.job li {
+    margin-bottom: 6px;
+}
+
+.job li:last-child {
+    margin-bottom: 0;
+}
+
+.job li::marker {
+    color: var(--accent);
+}
+
+/* ===================== CONTACTO ===================== */
+.contact {
+    padding: 36px 32px;
+    border-radius: 18px;
+    border: 1px solid var(--border-strong);
+    background:
+        radial-gradient(circle at top right, var(--accent-soft), transparent 55%),
+        var(--surface);
+    text-align: center;
+}
+
+.contact h2 {
+    margin-top: 0;
+    font-size: 1.8rem;
+}
+
+.contact-intro {
+    max-width: 520px;
+    margin: 0 auto 28px;
+    color: var(--muted);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    text-align: left;
+}
+
+.contact-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 14px;
+    border: 1px solid var(--border-strong);
+    background: var(--bg);
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-item:hover {
+    border-color: var(--accent-ring);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+.contact-link {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.contact-icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+.contact-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.contact-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.contact-value {
+    font-weight: 600;
+    color: var(--heading);
+    overflow-wrap: anywhere;
+}
+
+.contact-external {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.contact-item:hover .contact-external {
+    color: var(--accent);
+}
+
+.contact-copy {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin-right: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-copy:hover {
+    color: var(--accent);
+    border-color: var(--accent-ring);
+}
+
+.contact-copy.copied {
+    color: var(--live-text);
+    background: var(--live-bg);
+    border-color: transparent;
+}
+
+.contact-link:focus-visible,
+.contact-copy:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.contact .cv-download {
+    margin-top: 28px;
+}
+
+/* ===================== PIE DE PÁGINA Y AVISO ===================== */
+.site-footer {
+    padding: 0 20px 32px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    z-index: 1000;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: var(--heading);
+    color: var(--bg);
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translate(-50%, 12px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
 }
 
 /* ===================== SKILLS ===================== */
@@ -553,10 +897,22 @@ main {
     color: var(--on-accent);
 }
 
+@keyframes menu-item-in {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 /* ===================== RESPONSIVE ===================== */
 
 /* Menú hamburguesa: el menú completo ya no cabe en una línea */
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
 
     header {
         top: 12px;
@@ -569,45 +925,97 @@ main {
         flex-wrap: wrap;
         justify-content: space-between;
         gap: 0;
-        padding: 10px 12px;
+        padding: 8px 8px 8px 12px;
         border-radius: 22px;
     }
 
+    .navbar.scrolled {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .nav-progress {
+        left: 18px;
+        right: 18px;
+    }
+
     .brand {
-        display: inline;
+        display: inline-flex;
+        margin-right: auto;
+        margin-left: 10px;
     }
 
     .menu-toggle {
         display: inline-flex;
     }
 
+    /* Se despliega con animación en vez de aparecer de golpe */
     .menu {
-        display: none;
         order: 3;
         width: 100%;
         flex-direction: column;
-        flex-wrap: nowrap;
-        gap: 4px;
-        margin-top: 10px;
-        padding-top: 10px;
-        border-top: 1px solid var(--nav-border);
-        max-height: calc(100vh - 110px);
-        overflow-y: auto;
+        align-items: stretch;
+        gap: 2px;
+        max-height: 0;
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 1px solid transparent;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transition: max-height 0.35s ease, margin-top 0.35s ease, padding-top 0.35s ease,
+            opacity 0.25s ease, border-color 0.35s ease, visibility 0s linear 0.35s;
     }
 
     .navbar.open .menu {
-        display: flex;
+        max-height: calc(100vh - 110px);
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top-color: var(--nav-border);
+        overflow-y: auto;
+        opacity: 1;
+        visibility: visible;
+        transition: max-height 0.35s ease, margin-top 0.35s ease, padding-top 0.35s ease,
+            opacity 0.25s ease, border-color 0.35s ease, visibility 0s;
+    }
+
+    /* Las opciones entran una tras otra */
+    .navbar.open .menu li {
+        animation: menu-item-in 0.35s ease both;
+        animation-delay: calc(var(--i, 0) * 35ms);
+    }
+
+    .menu-indicator {
+        display: none;
     }
 
     .menu a {
-        display: block;
-        padding: 10px 12px;
-        border-radius: 10px;
+        display: flex;
+        gap: 14px;
+        padding: 11px 14px;
+        border-radius: 12px;
         font-size: 1rem;
+        color: var(--text);
     }
 
-    .menu a::after {
-        display: none;
+    .menu a i {
+        display: inline-block;
+        width: 18px;
+        text-align: center;
+        color: var(--muted);
+        transition: color 0.2s ease;
+    }
+
+    .menu a:hover i,
+    .menu a.active i {
+        color: var(--accent);
+    }
+
+    /* En celular el activo lleva fondo y una barrita a la izquierda */
+    .menu a.active,
+    .menu.has-indicator a.active {
+        background: var(--accent-soft);
+        box-shadow: inset 3px 0 0 var(--accent);
     }
 
     body {
@@ -636,6 +1044,35 @@ main {
 
     main {
         padding: 28px 16px;
+    }
+
+    .timeline {
+        padding-left: 24px;
+    }
+
+    .job {
+        padding: 16px 18px;
+    }
+
+    .job::before {
+        left: -25px;
+        top: 20px;
+    }
+
+    .job:hover {
+        transform: none;
+    }
+
+    .contact {
+        padding: 28px 18px;
+    }
+
+    .contact h2 {
+        font-size: 1.5rem;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
     }
 
     .edu-container {
@@ -708,8 +1145,28 @@ main {
     .skill,
     .skill img,
     .theme-toggle,
-    .btn-cv {
+    .btn-cv,
+    .navbar,
+    .menu,
+    .navbar.open .menu,
+    .menu.indicator-ready .menu-indicator {
         transition: none;
+    }
+
+    .navbar.open .menu li,
+    .job-current::before {
+        animation: none;
+    }
+
+    .job,
+    .contact-item,
+    .toast {
+        transition: none;
+    }
+
+    .job:hover,
+    .contact-item:hover {
+        transform: none;
     }
 }
 
@@ -727,8 +1184,16 @@ main {
 
     header,
     .cv-download,
-    .project-actions {
+    .project-actions,
+    .contact-copy,
+    .contact-external,
+    .site-footer,
+    .toast {
         display: none;
+    }
+
+    .contact {
+        background: none;
     }
 
     body {

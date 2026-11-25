@@ -69,17 +69,18 @@
                 aria-expanded="false" aria-controls="menu">
                 <i class="fa-solid fa-bars" aria-hidden="true"></i>
             </button>
-            <a href="#inicio" class="brand">Rubén Gámez</a>
+            <a href="#inicio" class="brand"><span class="brand-mark" aria-hidden="true">RG</span>Rubén Gámez</a>
             <ul class="menu" id="menu">
-                <li><a href="#inicio" class="active" data-i18n="nav.inicio">Inicio</a></li>
-                <li><a href="#sobre-mi" data-i18n="nav.sobre">Sobre mí</a></li>
-                <li><a href="#experiencia" data-i18n="nav.experiencia">Experiencia</a></li>
-                <li><a href="#proyectos-destacados" data-i18n="nav.destacados">Proyectos importantes</a></li>
-                <li><a href="#proyectos-personales" data-i18n="nav.personales">Proyectos Personales</a></li>
-                <li><a href="#habilidades" data-i18n="nav.habilidades">Habilidades</a></li>
-                <li><a href="#formacionAcademica" data-i18n="nav.formacion">Formación Académica</a></li>
-                <li><a href="#cursosCertificaciones" data-i18n="nav.cursos">Cursos</a></li>
-                <li><a href="#aptitudes" data-i18n="nav.aptitudes">Aptitudes</a></li>
+                <li class="menu-indicator" aria-hidden="true"></li>
+                <li><a href="#inicio" class="active"><i class="fa-solid fa-house" aria-hidden="true"></i><span data-i18n="nav.inicio">Inicio</span></a></li>
+                <li><a href="#sobre-mi"><i class="fa-solid fa-user" aria-hidden="true"></i><span data-i18n="nav.sobre">Sobre mí</span></a></li>
+                <li><a href="#experiencia"><i class="fa-solid fa-briefcase" aria-hidden="true"></i><span data-i18n="nav.experiencia">Experiencia</span></a></li>
+                <li><a href="#proyectos-destacados"><i class="fa-solid fa-star" aria-hidden="true"></i><span data-i18n="nav.destacados">Proyectos importantes</span></a></li>
+                <li><a href="#proyectos-personales"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span data-i18n="nav.personales">Proyectos Personales</span></a></li>
+                <li><a href="#habilidades"><i class="fa-solid fa-code" aria-hidden="true"></i><span data-i18n="nav.habilidades">Habilidades</span></a></li>
+                <li><a href="#formacionAcademica"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span data-i18n="nav.formacion">Formación Académica</span></a></li>
+                <li><a href="#cursosCertificaciones"><i class="fa-solid fa-certificate" aria-hidden="true"></i><span data-i18n="nav.cursos">Cursos</span></a></li>
+                <li><a href="#aptitudes"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i><span data-i18n="nav.aptitudes">Aptitudes</span></a></li>
             </ul>
             <div class="nav-actions">
                 <button type="button" id="lang-toggle" class="lang-toggle" lang="en" aria-label="Switch to English"
@@ -89,6 +90,7 @@
                     <i class="fa-solid fa-sun" aria-hidden="true"></i>
                 </button>
             </div>
+            <span class="nav-progress" aria-hidden="true"></span>
         </nav>
     </header>
     <main>
@@ -146,54 +148,56 @@
         <section id="experiencia" class="section fade">
             <h2 data-i18n="exp.titulo">💼 Experiencia profesional</h2>
 
-            <div class="job">
-                <h3 data-i18n="exp.azzule.puesto">Spyral Systems | Azzule Systems | Desarrollador de Software</h3>
-                <span data-i18n="exp.azzule.fecha">Abril 2025 – Actualidad</span>
-                <ul data-i18n="exp.azzule.lista">
-                    <li>Desarrollo de soluciones web y backend para clientes de diferentes industrias.</li>
-                    <li>Implementación de proyectos orientados a eficiencia operativa, automatización de procesos y
-                        mejora continua.</li>
-                    <li>Uso de tecnologías modernas como .NET 6+, Vue.js 3, REST APIs, y gestión de bases de datos SQL
-                        Server y MongoDB.</li>
-                    <li>Participación en el diseño y desarrollo de portales empresariales con funcionalidades integradas
-                        de IA, enfocados en asistencias inteligentes, flujos conversacionales y análisis automatizado de
-                        información.</li>
-                    <li>Construcción de interfaces interactivas en Vue.js, integradas con módulos de IA para
-                        recomendaciones, validación inteligente y navegación guiada.</li>
-                    <li>Desarrollo de APIs REST en C# implementando servicios, patrones de arquitectura, lógica de
-                        negocio y persistencia en SQL/MongoDB, incluyendo historiales conversacionales y procesamiento
-                        avanzado de datos.</li>
-                    <li>Integración de tecnologías como SignalR/WebSockets, AutoMapper, log4net y Serilog para
-                        comunicación en tiempo real, trazabilidad y observabilidad.</li>
-                    <li>Optimización y automatización de procesos mediante IA, logrando reducir tiempos operativos y
-                        mejorar la experiencia de usuario en los portales implementados.</li>
-                    <li>Proyectos destacados: AzzuleAI (portal web que automatiza procesos mediante prompts en
-                        lenguaje natural).</li>
-                </ul>
-            </div>
+            <div class="timeline">
+                <div class="job job-current">
+                    <h3 data-i18n="exp.azzule.puesto">Spyral Systems | Azzule Systems | Desarrollador de Software</h3>
+                    <span class="job-date"><i class="fa-regular fa-calendar" aria-hidden="true"></i><span data-i18n="exp.azzule.fecha">Abril 2025 – Actualidad</span></span>
+                    <ul data-i18n="exp.azzule.lista">
+                        <li>Desarrollo de soluciones web y backend para clientes de diferentes industrias.</li>
+                        <li>Implementación de proyectos orientados a eficiencia operativa, automatización de procesos y
+                            mejora continua.</li>
+                        <li>Uso de tecnologías modernas como .NET 6+, Vue.js 3, REST APIs, y gestión de bases de datos SQL
+                            Server y MongoDB.</li>
+                        <li>Participación en el diseño y desarrollo de portales empresariales con funcionalidades integradas
+                            de IA, enfocados en asistencias inteligentes, flujos conversacionales y análisis automatizado de
+                            información.</li>
+                        <li>Construcción de interfaces interactivas en Vue.js, integradas con módulos de IA para
+                            recomendaciones, validación inteligente y navegación guiada.</li>
+                        <li>Desarrollo de APIs REST en C# implementando servicios, patrones de arquitectura, lógica de
+                            negocio y persistencia en SQL/MongoDB, incluyendo historiales conversacionales y procesamiento
+                            avanzado de datos.</li>
+                        <li>Integración de tecnologías como SignalR/WebSockets, AutoMapper, log4net y Serilog para
+                            comunicación en tiempo real, trazabilidad y observabilidad.</li>
+                        <li>Optimización y automatización de procesos mediante IA, logrando reducir tiempos operativos y
+                            mejorar la experiencia de usuario en los portales implementados.</li>
+                        <li>Proyectos destacados: AzzuleAI (portal web que automatiza procesos mediante prompts en
+                            lenguaje natural).</li>
+                    </ul>
+                </div>
 
-            <div class="job">
-                <h3 data-i18n="exp.coppel.puesto">Coppel S.A. de C.V. | Desarrollador de Software – Contabilidad y Finanzas</h3>
-                <span data-i18n="exp.coppel.fecha">Agosto 2022 – Marzo 2025</span>
-                <ul data-i18n="exp.coppel.lista">
-                    <li>Desarrollo y mantenimiento: Diseño, implementación y mantenimiento de soluciones para sistemas
-                        contables y financieros, incluyendo facturación, nómina y gestión de impuestos.</li>
-                    <li>Proyectos estratégicos: Participación en proyectos clave como MultiIEPS, venta de motos y
-                        desarrollo de una aplicación de monitoreo de transacciones con .NET C#.</li>
-                    <li>Tecnologías: Experiencia en C#, C++, Java, SQL (PostgreSQL, SQL Server), Java Spring Boot.</li>
-                    <li>Seguridad: Mitigación de vulnerabilidades, remediación de código y habilitación de sistemas en
-                        casos de ciberataques.</li>
-                </ul>
-            </div>
+                <div class="job">
+                    <h3 data-i18n="exp.coppel.puesto">Coppel S.A. de C.V. | Desarrollador de Software – Contabilidad y Finanzas</h3>
+                    <span class="job-date"><i class="fa-regular fa-calendar" aria-hidden="true"></i><span data-i18n="exp.coppel.fecha">Agosto 2022 – Marzo 2025</span></span>
+                    <ul data-i18n="exp.coppel.lista">
+                        <li>Desarrollo y mantenimiento: Diseño, implementación y mantenimiento de soluciones para sistemas
+                            contables y financieros, incluyendo facturación, nómina y gestión de impuestos.</li>
+                        <li>Proyectos estratégicos: Participación en proyectos clave como MultiIEPS, venta de motos y
+                            desarrollo de una aplicación de monitoreo de transacciones con .NET C#.</li>
+                        <li>Tecnologías: Experiencia en C#, C++, Java, SQL (PostgreSQL, SQL Server), Java Spring Boot.</li>
+                        <li>Seguridad: Mitigación de vulnerabilidades, remediación de código y habilitación de sistemas en
+                            casos de ciberataques.</li>
+                    </ul>
+                </div>
 
-            <div class="job">
-                <h3 data-i18n="exp.feoss.puesto">FEOSS | Desarrollador de Software – Asesor y regulador</h3>
-                <span data-i18n="exp.feoss.fecha">Enero 2018 – Enero 2022</span>
-                <ul data-i18n="exp.feoss.lista">
-                    <li>Asesor en regularización de automóviles extranjeros.</li>
-                    <li>Desarrollo de sistema de almacenamiento de datos con C# y SQL Server para la gestión de
-                        vehículos importados.</li>
-                </ul>
+                <div class="job">
+                    <h3 data-i18n="exp.feoss.puesto">FEOSS | Desarrollador de Software – Asesor y regulador</h3>
+                    <span class="job-date"><i class="fa-regular fa-calendar" aria-hidden="true"></i><span data-i18n="exp.feoss.fecha">Enero 2018 – Enero 2022</span></span>
+                    <ul data-i18n="exp.feoss.lista">
+                        <li>Asesor en regularización de automóviles extranjeros.</li>
+                        <li>Desarrollo de sistema de almacenamiento de datos con C# y SQL Server para la gestión de
+                            vehículos importados.</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -554,13 +558,75 @@
             </div>
         </section>
 
-        <div class="cv-download">
-            <a href="assets/CV_ActualizadoJESUSRUBENGAMEZ.pdf" download class="btn-cv">
-                <i class="fa-solid fa-file-arrow-down"></i>
-                <span data-i18n="cv.descargar">Descargar CV</span>
-            </a>
-        </div>
+        <section id="contacto" class="section fade contact">
+            <h2 data-i18n="contacto.titulo">¿Hablamos?</h2>
+            <p class="contact-intro" data-i18n="contacto.texto">
+                Si tienes un proyecto o una oportunidad en mente, escríbeme. Con gusto platicamos.
+            </p>
+
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <a href="mailto:palomino070715@gmail.com" class="contact-link">
+                        <span class="contact-icon"><i class="fa-solid fa-envelope" aria-hidden="true"></i></span>
+                        <span class="contact-text">
+                            <span class="contact-label" data-i18n="contacto.correo">Correo</span>
+                            <span class="contact-value">palomino070715<wbr>@gmail.com</span>
+                        </span>
+                    </a>
+                    <button type="button" class="contact-copy" data-copy="palomino070715@gmail.com"
+                        aria-label="Copiar correo" title="Copiar correo">
+                        <i class="fa-regular fa-copy" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="contact-item">
+                    <a href="tel:+526871796879" class="contact-link">
+                        <span class="contact-icon"><i class="fa-solid fa-phone" aria-hidden="true"></i></span>
+                        <span class="contact-text">
+                            <span class="contact-label" data-i18n="contacto.telefono">Teléfono</span>
+                            <span class="contact-value">(+52) 687-179-68-79</span>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="contact-item">
+                    <a href="https://www.linkedin.com/in/jesus-ruben-gamez-molina-601159261/" target="_blank"
+                        rel="noopener" class="contact-link">
+                        <span class="contact-icon"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></span>
+                        <span class="contact-text">
+                            <span class="contact-label">LinkedIn</span>
+                            <span class="contact-value">jesus-ruben-gamez-molina</span>
+                        </span>
+                        <i class="fa-solid fa-arrow-up-right-from-square contact-external" aria-hidden="true"></i>
+                    </a>
+                </div>
+
+                <div class="contact-item">
+                    <a href="https://github.com/RubMolina10" target="_blank" rel="noopener" class="contact-link">
+                        <span class="contact-icon"><i class="fa-brands fa-github" aria-hidden="true"></i></span>
+                        <span class="contact-text">
+                            <span class="contact-label">GitHub</span>
+                            <span class="contact-value">RubMolina10</span>
+                        </span>
+                        <i class="fa-solid fa-arrow-up-right-from-square contact-external" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="cv-download">
+                <a href="assets/CV_ActualizadoJESUSRUBENGAMEZ.pdf" download class="btn-cv">
+                    <i class="fa-solid fa-file-arrow-down"></i>
+                    <span data-i18n="cv.descargar">Descargar CV</span>
+                </a>
+            </div>
+        </section>
     </main>
+
+    <footer class="site-footer">
+        <p>© <span id="year">2026</span> Jesús Rubén Gámez Molina</p>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script src="js/i18n.js"></script>
     <script src="js/script.js"></script>
